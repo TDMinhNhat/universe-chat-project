@@ -7,13 +7,13 @@ import reactor.core.publisher.Mono;
 
 
 public interface IController<S, P, F> {
-    Mono<HttpResponse<?>> add(S entity);
+    Mono<?> add(S entity) throws Exception;
 
-    Mono<HttpResponse<?>> update(P id, S entity);
+    Mono<?> update(P id, S entity) throws Exception;
 
-    Mono<HttpResponse<?>> delete(P id);
+    Mono<?> delete(P id) throws Exception;
 
-    Mono<HttpResponse<?>> getById(P id);
+    Mono<?> getById(P id) throws Exception;
 
-    MutableHttpResponse<Flux<?>> getAll(F filter);
+    Flux<?> getAll(F filter) throws Exception;
 }

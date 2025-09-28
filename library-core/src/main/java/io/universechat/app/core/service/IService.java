@@ -6,13 +6,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface IService<S, P, F> {
-    Mono<HttpResponse<?>> add(S entity) throws Exception;
+    Mono<?> add(S entity) throws Exception;
 
-    Mono<HttpResponse<?>> update(P id, S entity) throws Exception;
+    Mono<?> update(P id, S entity) throws Exception;
 
-    Mono<HttpResponse<?>> delete(P id) throws Exception;
+    Mono<?> delete(P id) throws Exception;
 
-    Mono<HttpResponse<?>> getById(P id) throws Exception;
+    Mono<?> getById(P id) throws Exception;
 
-    MutableHttpResponse<Flux<?>> getAll(F filter) throws Exception;
+    Flux<?> getAll(F filter) throws Exception;
 }
