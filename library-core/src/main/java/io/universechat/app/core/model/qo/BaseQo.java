@@ -1,4 +1,4 @@
-package io.universechat.app.model.qo;
+package io.universechat.app.core.model.qo;
 
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.validation.constraints.Positive;

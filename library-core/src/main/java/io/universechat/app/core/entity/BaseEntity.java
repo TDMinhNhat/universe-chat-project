@@ -1,4 +1,4 @@
-package io.universechat.app.entity;
+package io.universechat.app.core.entity;
 
 import io.micronaut.data.annotation.DateCreated;
 import io.micronaut.data.annotation.DateUpdated;

@@ -1,4 +1,4 @@
-package io.universechat.app.controller;
+package io.universechat.app.core.controller;
 
 import reactor.core.publisher.Mono;
 

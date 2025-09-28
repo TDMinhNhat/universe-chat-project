@@ -1,4 +1,4 @@
-package io.universechat.app.service;
+package io.universechat.app.core.service;
 
 import reactor.core.publisher.Mono;
 

@@ -1,4 +1,4 @@
-package io.universechat.app.config;
+package io.universechat.app.core.config;
 
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;

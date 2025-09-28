@@ -1,4 +1,4 @@
-package io.universechat.app.model.dto;
+package io.universechat.app.core.model.dto;
 
 import io.micronaut.data.model.Sort;
 import io.micronaut.serde.annotation.Serdeable;

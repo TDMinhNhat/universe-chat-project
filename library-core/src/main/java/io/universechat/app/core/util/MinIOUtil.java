@@ -1,4 +1,4 @@
-package io.universechat.app.util;
+package io.universechat.app.core.util;
 
 import io.micronaut.context.annotation.Value;
 import io.minio.*;
