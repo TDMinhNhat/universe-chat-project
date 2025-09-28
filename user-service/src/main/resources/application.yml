@@ -13,6 +13,9 @@ datasources:
   default:
     driver-class-name: org.postgresql.Driver
     db-type: postgres
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:userdb}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:123456789}
 jpa:
   default:
     properties:
@@ -25,7 +28,7 @@ jpa:
 eureka:
   client:
     registration:
-      enabled: true
+      enabled: false
     defaultZone: ${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}
 flyway:
   datasources:
