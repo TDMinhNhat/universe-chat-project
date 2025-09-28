@@ -19,7 +19,10 @@ dependencies {
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+    annotationProcessor "org.projectlombok:lombok:1.18.24"
     implementation("io.universechat.app:library-core:1.0.0")
+    implementation("org.mapstruct:mapstruct:1.6.3")
+    implementation("org.mapstruct:mapstruct-processor:1.6.3")
     implementation("com.ongres.scram:client:2.1")
     implementation("io.micrometer:context-propagation")
     implementation("io.micronaut:micronaut-http-client")
@@ -34,7 +37,9 @@ dependencies {
     implementation("io.micronaut.validation:micronaut-validation")
     implementation("io.vertx:vertx-pg-client")
     implementation("jakarta.validation:jakarta.validation-api")
+    implementation "io.micronaut.mapstruct:micronaut-mapstruct"
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
+    compileOnly 'org.projectlombok:lombok:1.18.24'
     runtimeOnly("io.goodforgod:slf4j-simple-logger:2.0.0")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")

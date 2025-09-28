@@ -1,17 +1,19 @@
 package io.universechat.app.core.controller;
 
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.MutableHttpResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.net.http.HttpResponse;
 
 public interface IController<S, P, F> {
-    Mono<HttpResponse<Object>> add(S entity);
+    Mono<HttpResponse<?>> add(S entity);
 
-    Mono<HttpResponse<Object>> update(P id, S entity);
+    Mono<HttpResponse<?>> update(P id, S entity);
 
-    Mono<HttpResponse<Object>> delete(P id);
+    Mono<HttpResponse<?>> delete(P id);
 
-    Mono<HttpResponse<Object>> getById(P id);
+    Mono<HttpResponse<?>> getById(P id);
 
-    Mono<HttpResponse<Object>> getAll(F filter);
+    MutableHttpResponse<Flux<?>> getAll(F filter);
 }
