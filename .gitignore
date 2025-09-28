@@ -4,3 +4,13 @@ out/
 *.iml
 *.iws
 *.ipr
+Thumbs.db
+.DS_Store
+.gradle
+build/
+target/
+.micronaut/
+.project
+.settings
+.classpath
+.factorypath
