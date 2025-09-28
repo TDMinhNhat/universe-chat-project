@@ -23,11 +23,12 @@ public record PageRequestDto(
         List<SortRequestDto> sorts
 ) {
 
-    public Pageable getPageable() {
-        return Pageable.from(page, size);
-    }
-
     public Sort getSort() {
         return Sort.of(sorts.stream().map(SortRequestDto::getOrder).toList());
     }
+
+    public Pageable getPageable() {
+        return Pageable.from(page, size, getSort());
+    }
+
 }
