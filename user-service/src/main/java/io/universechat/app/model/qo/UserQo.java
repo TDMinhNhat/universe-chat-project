@@ -1,13 +1,17 @@
 package io.universechat.app.model.qo;
 
 import io.micronaut.serde.annotation.Serdeable;
+import io.universechat.app.core.model.dto.PageRequestDto;
 import io.universechat.app.core.model.qo.BaseQo;
 import io.universechat.app.enums.Gender;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Serdeable
+@Getter @Setter
 public class UserQo extends BaseQo {
 
     @Size(max = 50, message = "max length is {max} characters")
@@ -30,4 +34,6 @@ public class UserQo extends BaseQo {
     private String email;
 
     private Boolean verified;
+
+    private PageRequestDto pageRequest;
 }

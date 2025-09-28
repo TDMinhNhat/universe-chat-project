@@ -39,7 +39,7 @@ public class UserController implements IController<CreateUserDto, Long, UserQo> 
     }
 
     @Override
-    public MutableHttpResponse<Flux<?>> getAll(UserQo filter) {
+    public Flux<?> getAll(UserQo filter) {
         return null;
     }
 }

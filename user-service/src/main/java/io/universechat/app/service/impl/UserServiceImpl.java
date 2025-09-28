@@ -1,9 +1,12 @@
 package io.universechat.app.service.impl;
 
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MutableHttpResponse;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.data.model.Slice;
+import io.universechat.app.core.exception.QueryNotFoundException;
+import io.universechat.app.mapper.UserMapper;
 import io.universechat.app.model.dto.CreateUserDto;
 import io.universechat.app.model.qo.UserQo;
+import io.universechat.app.model.vo.UserVo;
 import io.universechat.app.repository.UserRepository;
 import io.universechat.app.service.IUserService;
 import jakarta.inject.Singleton;
@@ -16,29 +19,37 @@ import reactor.core.publisher.Mono;
 public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public Mono<HttpResponse<?>> add(CreateUserDto entity) throws Exception {
-        return null;
+    public Mono<?> add(CreateUserDto entity) throws Exception {
+        return userRepository.save(userMapper.toUser(entity)).map(userMapper::toUserVo);
     }
 
     @Override
-    public Mono<HttpResponse<?>> update(Long id, CreateUserDto entity) throws Exception {
-        return null;
+    public Mono<?> update(Long id, CreateUserDto entity) throws Exception {
+        return userRepository.findByIdAndUpdate(id, entity).map(userMapper::toUserVo);
     }
 
     @Override
-    public Mono<HttpResponse<?>> delete(Long id) throws Exception {
-        return null;
+    public Mono<?> delete(Long id) throws Exception {
+        return userRepository.findById(id)
+                .switchIfEmpty(Mono.error(new QueryNotFoundException("User not found")))
+                .flatMap(user -> {
+                    user.setDeleted(true);
+                    return userRepository.save(user).map(userMapper::toUserVo);
+                });
     }
 
     @Override
-    public Mono<HttpResponse<?>> getById(Long id) throws Exception {
-        return null;
+    public Mono<?> getById(Long id) throws Exception {
+        return userRepository.findById(id).switchIfEmpty(Mono.error(new QueryNotFoundException("User not found")));
     }
 
     @Override
-    public MutableHttpResponse<Flux<?>> getAll(UserQo filter) throws Exception {
-        return null;
+    public Flux<?> getAll(UserQo filter) throws Exception {
+        return userRepository.getAllUsersByFilter(filter, filter.getPageRequest().getPageable())
+                .map(Slice::getContent)
+                .flux();
     }
 }

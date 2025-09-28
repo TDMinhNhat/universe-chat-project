@@ -23,27 +23,23 @@ public class UserRoleServiceImpl implements IUserRoleService {
     private final UserRoleMapper userRoleMapper;
 
     @Override
-    public Mono<HttpResponse<?>> add(CreateUserRoleDto entity) throws Exception {
-        return userRoleRepository.save(userRoleMapper.toUserRole(entity)).map(HttpResponse::ok);
+    public Mono<UserRole> add(CreateUserRoleDto entity) throws Exception {
+        return userRoleRepository.save(userRoleMapper.toUserRole(entity));
     }
 
     @Override
-    public Mono<HttpResponse<?>> update(Long id, CreateUserRoleDto entity) throws Exception {
-        return userRoleRepository.findById(id)
-                .switchIfEmpty(Mono.error(new QueryNotFoundException("Not found the UserRole")))
-                .map(item -> {
-            item.setCode(entity.getCode());
-            item.setName(entity.getName());
-            item.setNote(entity.getNote());
-            return HttpResponse.ok(userRoleRepository.update(item));
-        });
+    public Mono<UserRole> update(Long id, CreateUserRoleDto entity) throws Exception {
+        return userRoleRepository.findByIdAndUpdate(id, entity);
     }
 
     @Override
-    public Mono<HttpResponse<?>> delete(Long id) throws Exception {
+    public Mono<UserRole> delete(Long id) throws Exception {
         return userRoleRepository.findById(id)
                 .switchIfEmpty(Mono.error(new QueryNotFoundException("Not found the UserRole")))
-                .map(HttpResponse::ok);
+                .flatMap(item -> {
+                    item.setDeleted(true);
+                    return userRoleRepository.update(item);
+                });
     }
 
     @Override
@@ -54,8 +50,7 @@ public class UserRoleServiceImpl implements IUserRoleService {
     }
 
     @Override
-    public MutableHttpResponse<Flux<?>> getAll(UserRoleQo filter) throws Exception {
-        return  HttpResponse.ok(userRoleRepository.findAll())
-                .contentType(new MediaType("application/x-ndjson"));
+    public Flux<?> getAll(UserRoleQo filter) throws Exception {
+        return userRoleRepository.findAll();
     }
 }
