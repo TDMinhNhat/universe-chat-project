@@ -1,5 +1,5 @@
 plugins {
-    id("io.micronaut.application") version "4.5.4"
+    id("io.micronaut.library") version "4.5.4"
     id("com.gradleup.shadow") version "8.3.7"
     id("io.micronaut.test-resources") version "4.5.4"
     id("io.micronaut.aot") version "4.5.4"
@@ -36,10 +36,6 @@ dependencies {
     testResourcesService("org.postgresql:postgresql")
 }
 
-
-application {
-    mainClass = "io.universechat.app.Application"
-}
 java {
     sourceCompatibility = JavaVersion.toVersion("21")
     targetCompatibility = JavaVersion.toVersion("21")
@@ -71,10 +67,3 @@ micronaut {
         replaceLogbackXml = true
     }
 }
-
-
-tasks.named("dockerfileNative") {
-    jdkVersion = "21"
-}
-
-
