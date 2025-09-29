@@ -10,7 +10,6 @@ micronaut:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
   server:
-    context-path: /user/api
     port: 9001
 datasources:
   default:
@@ -33,12 +32,21 @@ jpa:
           username: ${DB_USERNAME:postgres}
           password: ${DB_PASSWORD:123456789}
     reactive: true
-eureka:
-  client:
-    registration:
-      enabled: false
-    defaultZone: ${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}
 flyway:
   datasources:
     default:
       enabled: true
+
+endpoints:
+  all:
+    enabled: true
+    sensitive: false
+  health:
+    enabled: true
+    details-visible: ANONYMOUS
+
+consul:
+  client:
+    discovery:
+      enabled: true
+    defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
