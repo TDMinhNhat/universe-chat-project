@@ -37,7 +37,6 @@ dependencies {
     implementation("io.micronaut.validation:micronaut-validation")
     implementation("io.vertx:vertx-pg-client")
     implementation("jakarta.validation:jakarta.validation-api")
-    implementation "io.micronaut.mapstruct:micronaut-mapstruct"
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
     compileOnly 'org.projectlombok:lombok:1.18.24'
     runtimeOnly("io.goodforgod:slf4j-simple-logger:2.0.0")

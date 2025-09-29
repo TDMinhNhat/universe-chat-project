@@ -9,21 +9,29 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+  server:
+    context-path: /user/api
+    port: 9001
 datasources:
   default:
     driver-class-name: org.postgresql.Driver
     db-type: postgres
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:userdb}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:universe-chat-user}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:123456789}
 jpa:
   default:
     properties:
       hibernate:
+        show_sql: true
         hbm2ddl:
           auto: none
         connection:
+          driver-class-name: org.postgresql.Driver
           db-type: postgres
+          url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:universe-chat-user}
+          username: ${DB_USERNAME:postgres}
+          password: ${DB_PASSWORD:123456789}
     reactive: true
 eureka:
   client:
