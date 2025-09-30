@@ -3,6 +3,7 @@ package io.universechat.app.core.util;
 import io.micronaut.context.annotation.Value;
 import io.minio.*;
 import io.minio.errors.*;
+import io.minio.http.Method;
 import jakarta.inject.Singleton;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class MinIOUtil {
 
     @Value("${minio.config.bucket-name}")
     private String bucketName;
-    private MinioClient minioClient;
+    private final MinioClient minioClient;
 
     private void checkBucket() {
         try {
@@ -38,12 +39,12 @@ public class MinIOUtil {
         this.checkBucket();
     }
 
-    public ObjectWriteResponse uploadFile(String objectName, InputStream inputStream) throws Exception {
+    public void uploadFile(String objectName, InputStream inputStream) throws Exception {
         PutObjectArgs args = PutObjectArgs.builder().stream(inputStream, -1, 10485760)
                 .bucket(bucketName)
                 .object(objectName)
                 .build();
-        return minioClient.putObject(args);
+        minioClient.putObject(args);
     }
 
     public void deleteFile(String objectName) throws Exception {
@@ -53,5 +54,9 @@ public class MinIOUtil {
                 .skipValidation(true)
                 .build();
         minioClient.removeObject(args);
+    }
+
+    public String getFileUrl(String objectName) throws Exception {
+        return minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder().method(Method.GET).bucket(bucketName).object(objectName).expiry(86400).build());
     }
 }
