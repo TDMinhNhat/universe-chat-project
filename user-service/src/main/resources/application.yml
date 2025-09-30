@@ -44,9 +44,13 @@ endpoints:
   health:
     enabled: true
     details-visible: ANONYMOUS
-
 consul:
   client:
     discovery:
       enabled: true
     defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
+minio:
+  config:
+    url: http://${MINIO_HOST:localhost}:${MINIO_PORT:9000}
+    access-key: root
+    secret-key: 123456789

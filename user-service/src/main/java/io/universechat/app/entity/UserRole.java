@@ -1,5 +1,6 @@
 package io.universechat.app.entity;
 
+import io.micronaut.serde.annotation.Serdeable;
 import io.universechat.app.core.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+@Serdeable
 @Entity @Table(name = "user_roles")
 @Getter @Setter
 @NoArgsConstructor @RequiredArgsConstructor

@@ -1,5 +1,6 @@
 package io.universechat.app.entity;
 
+import io.micronaut.serde.annotation.Serdeable;
 import io.universechat.app.core.entity.BaseEntity;
 import io.universechat.app.enums.Gender;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 
+@Serdeable
 @Entity @Table(name = "users")
 @Getter @Setter
 @NoArgsConstructor @RequiredArgsConstructor

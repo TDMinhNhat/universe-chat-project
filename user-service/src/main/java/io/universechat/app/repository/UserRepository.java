@@ -6,6 +6,7 @@ import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.micronaut.data.repository.reactive.ReactorCrudRepository;
 import io.micronaut.data.repository.reactive.ReactorPageableRepository;
+import io.universechat.app.core.exception.QueryNotFoundException;
 import io.universechat.app.entity.User;
 import io.universechat.app.model.dto.CreateUserDto;
 import io.universechat.app.model.qo.UserQo;
@@ -34,7 +35,7 @@ public interface UserRepository extends ReactorCrudRepository<User, Long>, React
     Mono<Page<User>> getAllUsersByFilter(UserQo filter, Pageable pageable);
 
     default Mono<User> findByIdAndUpdate(Long id, CreateUserDto dto) {
-        return findById(id).switchIfEmpty(Mono.error(new RuntimeException("User not found"))).flatMap(user -> {
+        return findById(id).switchIfEmpty(Mono.error(new QueryNotFoundException("User not found"))).flatMap(user -> {
             user.setFullName(dto.getFullName());
             user.setSex(dto.getSex());
             user.setBirthDate(dto.getBirthDate());
