@@ -1,0 +1,33 @@
+micronaut:
+  application:
+    name: group-service
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+datasources:
+  default:
+    driver-class-name: org.postgresql.Driver
+    db-type: postgres
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        connection:
+          db-type: postgres
+    reactive: true
+consul:
+  client:
+    registration:
+      enabled: true
+    defaultZone: ${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
+flyway:
+  datasources:
+    default:
+      enabled: true

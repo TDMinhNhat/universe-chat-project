@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: io.universechat.app
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [ app-name, consul, data, data-hibernate-reactive, discovery-client, discovery-consul, flyway, graalvm, gradle, hibernate-reactive-jpa, http-client, http-client-test, java, java-application, jdbc-hikari, junit, lombok, micronaut-aot, micronaut-build, micronaut-http-validation, netty-server, openapi, postgres, reactor, readme, serialization-jackson, shade, slf4j-simple-logger, static-resources, swagger-ui, test-resources, validation, yaml, yaml-build ]
