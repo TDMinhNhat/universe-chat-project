@@ -10,7 +10,7 @@ micronaut:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
   server:
-    port: 9001
+    port: 10001
 datasources:
   default:
     driver-class-name: org.postgresql.Driver
@@ -36,14 +36,6 @@ flyway:
   datasources:
     default:
       enabled: true
-
-endpoints:
-  all:
-    enabled: true
-    sensitive: false
-  health:
-    enabled: true
-    details-visible: ANONYMOUS
 consul:
   client:
     discovery:

@@ -24,7 +24,7 @@ public record PageRequestDto(
 ) {
 
     public Sort getSort() {
-        return Sort.of(sorts.stream().map(SortRequestDto::getOrder).toList());
+        return Sort.of(this.sorts == null || this.sorts.isEmpty() ? null : sorts.stream().map(SortRequestDto::getOrder).toList());
     }
 
     public Pageable getPageable() {

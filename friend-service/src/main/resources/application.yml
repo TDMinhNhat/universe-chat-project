@@ -9,10 +9,29 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+  server:
+    port: 10002
 datasources:
   default:
     driver-class-name: org.postgresql.Driver
     db-type: postgres
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:universe-chat-friend}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:123456789}
+jpa:
+  default:
+    properties:
+      hibernate:
+        show_sql: true
+        hbm2ddl:
+          auto: none
+        connection:
+          driver-class-name: org.postgresql.Driver
+          db-type: postgres
+          url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:universe-chat-friend}
+          username: ${DB_USERNAME:postgres}
+          password: ${DB_PASSWORD:123456789}
+    reactive: true
 consul:
   client:
     defaultZone: ${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
@@ -22,12 +41,8 @@ flyway:
   datasources:
     default:
       enabled: true
-jpa:
-  default:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: none
-        connection:
-          db-type: postgres
-    reactive: true
+minio:
+  config:
+    url: http://${MINIO_HOST:localhost}:${MINIO_PORT:9000}
+    access-key: root
+    secret-key: 123456789
