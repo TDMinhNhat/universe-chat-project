@@ -1,0 +1,25 @@
+micronaut:
+  application:
+    name: chat-service
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+  server:
+    port: 10003
+mongodb:
+  uri: mongodb://${DB_HOST:localhost}:${DB_PORT:27017}
+consul:
+  client:
+    defaultZone: ${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
+    registration:
+      enabled: true
+minio:
+  config:
+    url: http://${MINIO_HOST:localhost}:${MINIO_PORT:9000}
+    access-key: root
+    secret-key: 123456789
