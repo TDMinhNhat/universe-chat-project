@@ -19,6 +19,7 @@ dependencies {
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+    implementation("io.universechat.app:library-core:1.0.0")
     implementation("com.ongres.scram:client:2.1")
     implementation("io.micrometer:context-propagation")
     implementation("io.micronaut:micronaut-http-client")

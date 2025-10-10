@@ -13,6 +13,9 @@ datasources:
   default:
     driver-class-name: org.postgresql.Driver
     db-type: postgres
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:universe-chat-group}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:123456789}
 jpa:
   default:
     properties:
@@ -30,4 +33,6 @@ consul:
 flyway:
   datasources:
     default:
+      validate-migration-naming: true
+      validate-on-migrate: true
       enabled: true

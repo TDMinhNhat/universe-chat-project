@@ -1,5 +1,6 @@
 package io.universechat.app.core.model.qo;
 
+import io.micronaut.data.model.Pageable;
 import io.micronaut.data.model.Sort;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.validation.constraints.NotNull;
@@ -20,14 +21,16 @@ public abstract class PageRequestQo {
     @Positive(message = "must be positive")
     private Integer size;
 
-    @NotNull(message = "can not be null or empty")
     private String property;
 
-    @NotNull(message = "can not be null or empty")
     @Pattern(regexp = "(ASC|DESC)", message = "must be either 'ASC' or 'DESC'")
     private String direction;
 
     private Boolean ignoreCase;
+
+    public Pageable getPageable() {
+        return Pageable.from(page, size, property != null || direction != null ? Sort.of(getOrder()) : null);
+    }
 
     public Sort.Order getOrder() {
         return new Sort.Order(property, Sort.Order.Direction.valueOf(direction), ignoreCase);
