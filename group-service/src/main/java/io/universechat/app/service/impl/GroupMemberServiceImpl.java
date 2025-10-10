@@ -57,7 +57,7 @@ public class GroupMemberServiceImpl implements GroupMemberService {
     }
 
     @Override
-    public Mono<?> getById(Long id) throws Exception {
+    public Mono<GroupMember> getById(Long id) throws Exception {
         return groupMemberRepository.findById(id).switchIfEmpty(Mono.error(new QueryNotFoundException("Group member not found")));
     }
 

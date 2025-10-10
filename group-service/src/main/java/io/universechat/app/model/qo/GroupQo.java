@@ -1,5 +1,6 @@
 package io.universechat.app.model.qo;
 
+import io.micronaut.core.annotation.Introspected;
 import io.universechat.app.core.model.qo.BaseQo;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@Introspected
 public class GroupQo extends BaseQo {
 
     @Size(max = 100, message = "max length is {max} characters")

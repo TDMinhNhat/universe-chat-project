@@ -6,6 +6,6 @@ import io.universechat.app.model.dto.GroupDto;
 import io.universechat.app.model.qo.GroupQo;
 import reactor.core.publisher.Mono;
 
-public interface GroupService extends IService<GroupDto, Long, GroupQo> {
+public interface GroupService extends IService<GroupDto, Long, GroupQo, Group> {
     Mono<Group> update(Long id, GroupDto entity) throws Exception;
 }
