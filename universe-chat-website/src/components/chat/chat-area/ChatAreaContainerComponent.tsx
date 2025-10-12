@@ -35,7 +35,7 @@ export default function ChatAreaContainerComponent({ menu }:{ menu: string }): J
     }
 
     return (
-        <Stack className={"position-absolute h-100"} direction={"row"}>
+        <Stack className={"h-100 w-100"} direction={"row"}>
             { renderOption(menu) }
         </Stack>
     )

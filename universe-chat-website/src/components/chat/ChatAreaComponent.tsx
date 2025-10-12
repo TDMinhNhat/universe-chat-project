@@ -4,7 +4,7 @@ import ChatAreaContainerComponent from "./chat-area/ChatAreaContainerComponent.t
 
 export default function ChatAreaComponent({ menu }:{ menu: string }): JSX.Element {
     return (
-        <Box component={"div"}>
+        <Box className={"container-fluid w-100 h-100 p-0"} component={"div"}>
             <ChatAreaContainerComponent menu={menu}/>
         </Box>
     )

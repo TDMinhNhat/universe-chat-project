@@ -14,7 +14,7 @@ export default function ListRequestOptionComponent({ request, setRequest }:{ req
     }
 
     return (
-        <Stack direction={"column"} sx={{
+        <Stack className={"w-25"} direction={"column"} sx={{
             borderRight: "1px solid",
         }}>
             <Stack className={"d-flex flex-row align-items-center p-3"} direction={"row"} sx={{

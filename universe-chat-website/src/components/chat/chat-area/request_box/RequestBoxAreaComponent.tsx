@@ -3,6 +3,7 @@ import RenderListFriendsComponent from "./display/RenderListFriendsComponent.tsx
 import RenderListGroupsComponent from "./display/RenderListGroupsComponent.tsx";
 import RenderRequestFriendsComponent from "./display/RenderRequestFriendsComponent.tsx";
 import RenderRequestGroupsComponent from "./display/RenderRequestGroupsComponent.tsx";
+import {Box} from "@mui/material";
 
 export default function RequestBoxAreaComponent({ request }:{ request: string }): JSX.Element {
 
@@ -31,8 +32,8 @@ export default function RequestBoxAreaComponent({ request }:{ request: string })
     }
 
     return (
-        <>
+        <Box className={"container-fluid w-100 h-100 p-0"}>
             { renderRequestBoxArea(request) }
-        </>
+        </Box>
     )
 }
